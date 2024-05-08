@@ -128,8 +128,10 @@ From the above feature importances chart, the top 5 important predictors are:
 ### Analysis of Partial Dependence Plot
 ![Screenshot 2024-05-08 at 8 52 29 PM](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/b0535af5-bded-463e-b5ca-a7179fcaa314)
 
+# Business Impact 
+### Out-time Validation - Year 2017 Q1
+The model scoring result on Year 2017 Q1 is presented as below:
+![image](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/15959e72-277f-4278-ab57-6c892adf9f44)
 
-# Business Impact evaluated using Out-time Validation - Year 2017 Q1
-
-
-# Future Enhancement
+From the out-time Validation data sample, it has been determined that by implementing Risky Loan Model is able to generate a net profit of $246k in 2017 Q1.
+![Screenshot 2024-05-08 at 9 03 35 PM](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/9d1f1019-0400-4154-82c9-6a20449ab3fa)
