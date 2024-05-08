@@ -98,3 +98,6 @@ Highly correlated independent variables are removed to prevent multicollinearity
 
 - Approach A is employed during the first phase of the model experiment, wherein the performances of various algorithm types with default parameters are compared.
 - Approach B is implemented after finalizing tree models as the chosen algorithm in the first phase of the model experiment.
+
+# Model Building
+- Recall and AUC 
