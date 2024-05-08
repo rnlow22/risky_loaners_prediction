@@ -80,8 +80,8 @@ As a high level exploratory study of the dataset, it is helpful to understand wh
 ![image](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/03934fb1-cf39-427b-b238-667f52857c54)
 
 Based on the above observations, for both non-Normal and transformed datasets, the heat map shows a different characteristics in first loan vs non-first loan analysis, for example:
-1. Annual Percentage Rate has higher correlation with the target in first loan data sample as compared to non-first loan data sample
-2. Number of Failed Payment is in the top 7 features (top 8 for transformed features) that is correlated with target in the non-first loan data sample, however this is not applicable to first loan data sample.
+1. **Annual Percentage Rate** has higher correlation with the target in first loan data sample as compared to non-first loan data sample
+2. **Number of Failed Payment** is in the top 7 features (top 8 for transformed features) that is correlated with target in the non-first loan data sample, however this is not applicable to first loan data sample.
 
 Hence, here is the proposed model building strategy:
 1. To use non-linear models such as tree models instead of linear models where the trees is able to split based on the distinctive behaviour of data samples by different categories (Perhaps First loan vs non-first loan).
@@ -90,3 +90,11 @@ Hence, here is the proposed model building strategy:
 For experimental purposes, linear model such as Logistic Regression will be included in the baseline model performance comparison.
 
 ## Understanding  Correlation between Independent Variables:
+There are 6 pairs of highly correlated independent variables identified from Correlation Analysis:
+![Screenshot 2024-05-08 at 7 09 13 PM](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/fa892209-6c1d-41e2-99b0-5ac0fdc5461e)
+
+Highly correlated independent variables are removed to prevent multicollinearity for model building, using the following 2 approaches:
+![Screenshot 2024-05-08 at 7 11 41 PM](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/cc3a4aae-9123-497f-b918-6c0385b592c5)
+
+- Approach A is employed during the first phase of the model experiment, wherein the performances of various algorithm types with default parameters are compared.
+- Approach B is implemented after finalizing tree models as the chosen algorithm in the first phase of the model experiment.
