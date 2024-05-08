@@ -1,1 +1,76 @@
 # Risky Loaners: Project Overview
+- The objective of this project is to identify potential risky loaners, whom having high loan risk from the loan application. 
+- The goal of predicting loans application with high risk is to avoid or minimize financial losses to lenders, to allow lenders to assess the likelihood of borrowers defaulting on their loans.
+
+![Screenshot 2024-05-08 at 4 56 46 PM](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/44ef8b6f-5b97-44b5-9120-0df31252c540)
+
+## References:
+**Python Version:** 3.10 <br />
+**Packages:** numpy, pandas, seaborn, matplotlib, Scikit-Learn, StatsModels, Scientific Python (SciPy) <br />
+**Slide:** [Risky Loaners Model Slides.pdf](https://github.com/rnlow22/risky_loaners_prediction/blob/main/Risky%20Loaners%20Model%20Slides.pdf) <br />
+**ipynb File:** [Risky Loaners Model.ipynb](https://github.com/rnlow22/risky_loaners_prediction/blob/main/Risky%20Loaners%20Model.ipynb) <br />
+
+# Feature Engineering
+### Target Variable
+**loanStatus** is used to defined the target variable, whereby:
+1. `target == 1` : **Risky Loaners**, Loans that carry a risk of default or are unlikely to be repaid according to the agreed term and predefined schedule. This leads to the possibility of cost incurred on third parties (i.e., Administrator, Legal fees) for late payments. <br />(`loanStatus in ['Charged Off Paid Off','External Collection','Internal Collection','Settled Bankruptcy','Charged Off']`)
+2. `target == 0` : **Non-Risky Loaners**, Loans that are paid according to the agreed term and predefined schedule as set by the lender. <br /> (`loanStatus in ['Paid Off Loan','Settlement Paid Off']`)
+
+### Numerical Variable
+To predict the loan application with high risk, it is important to look into several areas, including credit score of the borrowers, by analyzing the borrower's creditworthiness based on their credit history.
+
+From the data provided, _payment.csv_ and _loan.csv_ are the best data option we can analyze the historical payment behaviour. Hence, new features are created based on business understanding from _payment.csv_ and _loan.csv_:
+
+1. **Previous loan Count:** The number of previous funded loan
+2. **Previous Bad Loan Count:** The number of previous funded loan that has turned into bad loan
+3. **Previous Paid Off Loan Count:** The number of previous funded loan that has been paid off
+4. **Difference between full payment and Originally Scheduled Payment Amount:** The difference in term of the full payment made to lenders and the Originally Scheduled Payment Amount for the previous loan
+5. **Existing Debt Amount (RM):** The total amount of debt based on the previous funded loan that has not been paid off
+6. **Previous Payment is Collection:** The number of payment that is collection for the previous loan
+7. **Number of Success Payment Made:** The number of Success payment made for the previous loan
+8. **Number of Failed Payment Made:** The number of Failed payment made for the previous loan
+9. **Median Payment Amount (RM) of Success Payment Made:** The median Payment Amount (RM) of Success Payment Made for the previous loan
+10. **Median Payment Amount (RM) of Failed Payment Made:** The median Payment Amount (RM) of Failed Payment Made for the previous loan
+11. **Minutes from Application to Originiated (mins):** The minutes differences from Originated Datetime and Application Datetime
+12. **Ratio of Failed over Success Payment:** Number of Failed Payment divided by Number of Success Payment and Small Value
+
+### Categorical Variable
+Furthermore, feature engineering has also been applied to the columns **inquiryonfilecurrentaddressconflict**, **morethan3inquiriesinthelast30days**, **inquirycurrentaddressnotonfile** using the following conditions:
+- Replacing True to 1
+- Replacing False to 0
+- Imputing missing values with 0
+
+Besides that, feature engineering has also been applied to the columns **overallmatchresult**, **nameaddressmatch** using the following conditions:
+- Replacing invalid to -1
+- Replacing other to -1
+- Replacing unavailable to -1
+- Imputing missing values with -1
+- Replacing mismatch to 0
+- Replacing partial to 0.5
+- Replacing match to 1
+
+# Data Transformation
+In this section, the following was carried out:
+
+1. Normality Test:
+    - 𝐻0  : Numerical feature is normally distriuted
+    - 𝐻1  : Numerical column is not normally distributed. <br />
+    where if  𝑝<0.05 , it is statistically significant to reject the null hypothesis. Hence, there is sufficient evidence to conclude that numerical feature is not normally distributed.
+
+2. From the above test, numerical features that are not normal are identified and transformed with the following steps (these steps are only applicable to in-time training data):
+    1. The features are being scaled (i.e., Standard Scaler).
+    2. Then, features are being scaled via Min Max Scaler which would restrict range of the numerical feature between [0, 1]
+    3. The features are then further transformed via Yeo-Johnson Transformation so that the resulting features will be more normally distributed.
+    
+3. Out-time validation data will be transformed with the scaler trained from step [2]. The transformed data will be capped between [0,1]
+
+Both non-normal features and transformed features are kept for model training performance comparison in the next section.
+
+Example of the data Transformation:
+![Screenshot 2024-05-08 at 6 07 21 PM](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/b6d8a29f-0c47-4831-ad6c-f0879839ddbe)
+
+# Exploratory Data Analysis
+### Understanding Linear Relationship between Independent Variables and Target Variable:
+
+
+### Understanding  Correlation between Independent Variables:
