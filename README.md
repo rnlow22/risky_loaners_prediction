@@ -53,9 +53,9 @@ Besides that, feature engineering has also been applied to the columns **overall
 In this section, the following was carried out:
 
 1. Normality Test:
-    - 𝐻0  : Numerical feature is normally distriuted
-    - 𝐻1  : Numerical column is not normally distributed. <br />
-    where if  𝑝<0.05 , it is statistically significant to reject the null hypothesis. Hence, there is sufficient evidence to conclude that numerical feature is not normally distributed.
+    - $𝐻_0$ : Numerical feature is normally distriuted
+    - $𝐻_1$  : Numerical column is not normally distributed. <br />
+    where if  $𝑝<0.05$ , it is statistically significant to reject the null hypothesis. Hence, there is sufficient evidence to conclude that numerical feature is not normally distributed.
 
 2. From the above test, numerical features that are not normal are identified and transformed with the following steps (these steps are only applicable to in-time training data):
     1. The features are being scaled (i.e., Standard Scaler).
@@ -70,7 +70,23 @@ Example of the data Transformation:
 ![Screenshot 2024-05-08 at 6 07 21 PM](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/b6d8a29f-0c47-4831-ad6c-f0879839ddbe)
 
 # Exploratory Data Analysis
-### Understanding Linear Relationship between Independent Variables and Target Variable:
+## Understanding Linear Relationship between Independent vs Target Variable:
+As a high level exploratory study of the dataset, it is helpful to understand whether there is any different behaviour patterns between different group of loaners (i.e., Non-First Loaners and First Loaners): 
 
+### non-Normal Datasets
+![image](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/3d0713ce-b24a-4554-819e-a3ad078d491e)
 
-### Understanding  Correlation between Independent Variables:
+### Transformed Datasets
+![image](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/03934fb1-cf39-427b-b238-667f52857c54)
+
+Based on the above observations, for both non-Normal and transformed datasets, the heat map shows a different characteristics in first loan vs non-first loan analysis, for example:
+1. Annual Percentage Rate has higher correlation with the target in first loan data sample as compared to non-first loan data sample
+2. Number of Failed Payment is in the top 7 features (top 8 for transformed features) that is correlated with target in the non-first loan data sample, however this is not applicable to first loan data sample.
+
+Hence, here is the proposed model building strategy:
+1. To use non-linear models such as tree models instead of linear models where the trees is able to split based on the distinctive behaviour of data samples by different categories (Perhaps First loan vs non-first loan).
+2. To build separate linear models for first loan and non-first loan. However, we have observed that only 3,057 (~ 12%) data is capturing the non-first loan. This means that there are insufficient data for the proposal model buiding strategy.
+
+For experimental purposes, linear model such as Logistic Regression will be included in the baseline model performance comparison.
+
+## Understanding  Correlation between Independent Variables:
