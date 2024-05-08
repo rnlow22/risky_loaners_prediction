@@ -113,8 +113,23 @@ Highly correlated independent variables are removed to prevent multicollinearity
 ![Screenshot 2024-05-08 at 8 45 29 PM](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/6b37889d-c3ad-46ab-b61a-2bfa8ffcbaeb)
 
 # Post Model Analysis
+![image](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/f3b01f4d-d0b6-44fa-b5c4-5ff7a005dc84)
+
+From the above feature importances chart, the top 5 important predictors are:
+1. Clear Fraud Score
+2. Originally Scheduled Payment Amount (Transformed)
+3. Annual Percentage Rate (%) (Transformed)
+4. Minutes difference between application datetime to originated datetime
+5. Number of unique inquiries for the consumer seen by Clarity in the last 365 days
+
+### Analysis of Data Distribution Plot
+![Screenshot 2024-05-08 at 8 50 55 PM](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/eee1f4f8-fff3-4137-80a6-57d4591501d7)
+
+### Analysis of Partial Dependence Plot
+![Screenshot 2024-05-08 at 8 52 29 PM](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/b0535af5-bded-463e-b5ca-a7179fcaa314)
 
 
 # Business Impact evaluated using Out-time Validation - Year 2017 Q1
+
 
 # Future Enhancement
