@@ -100,4 +100,21 @@ Highly correlated independent variables are removed to prevent multicollinearity
 - Approach B is implemented after finalizing tree models as the chosen algorithm in the first phase of the model experiment.
 
 # Model Building
-- Recall and AUC 
+- The dataset is divided into the following samples:
+    - In-time Train data samples: A random split of 80% of the data occurring before Year 2017
+    - In-time Test data samples: A random split of 20% of the data occurring before Year 2017
+    - Out-time Validation data samples: All data from Year 2017
+- The purpose of monitoring Out-time Validation is to ensure the robustness of the model performance and avoid finalizing model that is overfitting.
+- Recall and AUC have been designated as the primary and secondary performance indicators throughout the entire model development process in this project, supported by the following rationale:
+    - Recall: Recall is selected as the primary performance indicator because the project's objective is to accurately identify all instances of true risky loan applicants. The model serves as a reference for business stakeholders to screen loan applications before approving and funding loans.
+    - AUC: AUC is chosen as the secondary indicator due to its importance in developing a model capable of effectively distinguishing between positive and negative instances across all potential thresholds.
+
+### End-to-End Model Development Flow Chart
+![Screenshot 2024-05-08 at 8 45 29 PM](https://github.com/rnlow22/risky_loaners_prediction/assets/30455582/6b37889d-c3ad-46ab-b61a-2bfa8ffcbaeb)
+
+# Post Model Analysis
+
+
+# Business Impact evaluated using Out-time Validation - Year 2017 Q1
+
+# Future Enhancement
